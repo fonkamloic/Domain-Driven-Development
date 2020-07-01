@@ -71,3 +71,22 @@ class List3<T> extends ValueObject<KtList> {
     return value.length() == maxLength;
   }
 }
+
+
+class NoteBody extends ValueObject<String> {
+  @override
+  final Either<ValueFailure<String>, String> value;
+
+  static const maxLength = 1000;
+
+  factory NoteBody(String input) {
+    assert(input != null);
+    return NoteBody._(
+      validateMaxStringLength(input, maxLength).flatMap(validateStringNotEmpty),
+    );
+  }
+
+  const NoteBody._(this.value);
+}
+
+
