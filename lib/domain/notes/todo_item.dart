@@ -4,6 +4,7 @@ import 'package:ddd/domain/core/value_objects.dart';
 import 'package:ddd/domain/notes/value_objects.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:flutter/foundation.dart';
 
 part 'todo_item.freezed.dart';
 
