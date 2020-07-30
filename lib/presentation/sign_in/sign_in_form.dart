@@ -1,4 +1,7 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:ddd/application/auth/auth_bloc.dart';
 import 'package:ddd/application/auth/sign_in_form/sign_in_form_bloc.dart';
+import 'package:ddd/presentation/routes/router.gr.dart';
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +23,11 @@ class SignInForm extends StatelessWidget {
                         invalidEmailAndPasswordCombination: (_) =>
                             'Invalid password and email combination'),
                   );
-                }, (r) {}));
+                }, (r) {
+                  ExtendedNavigator.of(context)
+                      .pushReplacementNamed(Routes.noteOverviewPage);
+                      context.bloc<AuthBloc>().add(const AuthEvent.authCheckRequested());
+                }));
 
         // state.authFailureOrSuccessOption.fold(() {}, (either) => either.fold((failure) {} , (r) { // navigate }));
       },
