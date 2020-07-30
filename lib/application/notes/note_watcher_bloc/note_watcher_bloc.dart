@@ -30,26 +30,33 @@ class NoteWatcherBloc extends Bloc<NoteWatcherEvent, NoteWatcherState> {
   Stream<NoteWatcherState> mapEventToState(
     NoteWatcherEvent event,
   ) async* {
-    yield* event.map(watchAllStarted: (e) async* {
-      yield const NoteWatcherState.loadInProgress();
-      _noteStreamSubscription?.cancel();
-      _noteStreamSubscription = _noteRepository.watchAll().listen(
-          (failureOrNotes) =>
-              add($NoteWatcherEvent.notesReceived(failureOrNotes)));
-    }, watchUncompletedStarted: (e) async* {
-      yield const NoteWatcherState.loadInProgress();
-      _noteStreamSubscription?.cancel();
-      _noteStreamSubscription = _noteRepository.watchUncompleted().listen(
-          (failureOrNotes) =>
-              add($NoteWatcherEvent.notesReceived(failureOrNotes)));
-    }, notesReceived: (e) async* {
-      yield e.failureOrNotes.fold((f) => NoteWatcherState.loadFailure(f),
-          (notes) => NoteWatcherState.loadSuccess(notes));
-    });
+    yield* event.map(
+      watchAllStarted: (e) async* {
+        yield const NoteWatcherState.loadInProgress();
+        await _noteStreamSubscription?.cancel();
+        _noteStreamSubscription = _noteRepository.watchAll().listen(
+              (Either<NoteFailure, KtList<Note>> failureOrNotes) =>
+                  add(NoteWatcherEvent.notesReceived(failureOrNotes)),
+            );
+      },
+      watchUncompletedStarted: (e) async* {
+        yield const NoteWatcherState.loadInProgress();
+        await _noteStreamSubscription?.cancel();
+        _noteStreamSubscription = _noteRepository.watchUncompleted().listen(
+              (Either<NoteFailure, KtList<Note>> failureOrNotes) =>
+                  add(NoteWatcherEvent.notesReceived(failureOrNotes)),
+            );
+      },
+      notesReceived: (e) async* {
+        yield e.failureOrNotes.fold(
+          (NoteFailure f) => NoteWatcherState.loadFailure(f),
+          (KtList<Note> notes) => NoteWatcherState.loadSuccess(notes),
+        );
+      },
+    );
   }
 
-
-// close the subscription to firebase when not neither to avoid unneccessary bills. 
+// close the subscription to firebase when not neither to avoid unneccessary bills.
   @override
   Future<void> close() async {
     await _noteStreamSubscription?.cancel();
