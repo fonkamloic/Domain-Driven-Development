@@ -34,11 +34,12 @@ class NoteFormBloc extends Bloc<NoteFormEvent, NoteFormState> {
     yield* event.map(
       initialized: (e) async* {
         yield e.initialNoteOption.fold(
-            () => state,
-            (initailNote) => state.copyWith(
-                  note: initailNote,
-                  isEditing: true,
-                ));
+          () => state,
+          (initailNote) => state.copyWith(
+            note: initailNote,
+            isEditing: true,
+          ),
+        );
       },
       bodyChanged: (e) async* {
         yield state.copyWith(
