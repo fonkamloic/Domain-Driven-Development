@@ -10,7 +10,7 @@ void main() {
   configureInjection(Environment.prod);
   /** BlocDelegate allows us to override onTransition and onError and will help us see all bloc state changes (transitions) and errors in one place!
  */
-  BlocSupervisor.delegate = SimpleBlocDelegate();
   runApp(AppWidget());
+  // BlocSupervisor.delegate = SimpleBlocDelegate();
 }
 
