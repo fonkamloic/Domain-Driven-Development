@@ -3,6 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:ddd/application/notes/note_form_bloc/note_form_bloc.dart';
 import 'package:ddd/domain/notes/note.dart';
 import 'package:ddd/injections.dart';
+import 'package:ddd/presentation/notes/note_form/widgets/body_field_widget.dart';
 import 'package:ddd/presentation/routes/router.gr.dart';
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +37,7 @@ class NoteFormPage extends StatelessWidget {
                         route.settings.name == Routes.noteOverviewPage);
                   }));
         },
-        buildWhen: (p, c) => p.isSaving != p.isSaving,
+        buildWhen: (p, c) => p.isSaving != c.isSaving,
         builder: (context, state) {
           return Stack(
             children: <Widget>[
@@ -60,7 +61,6 @@ class SavingsInProgressOverlay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-    final isSaving = true;
     return IgnorePointer(
       ignoring: !isSaving,
       child: AnimatedContainer(
@@ -95,17 +95,31 @@ class NoteFormScaffold extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: BlocBuilder<NoteFormBloc, NoteFormState>(
-          buildWhen: (p, c) => p.isEditing != p.isEditing,
+          buildWhen: (p, c) => p.isEditing != c.isEditing,
           builder: (context, state) =>
               Text(state.isEditing ? 'Edit a note' : 'Create a note'),
         ),
         actions: <Widget>[
           IconButton(
-              icon: Icon(Icons.check),
+              icon: const Icon(Icons.check),
               onPressed: () {
                 context.bloc<NoteFormBloc>().add(const NoteFormEvent.saved());
               })
         ],
+      ),
+      body: BlocBuilder<NoteFormBloc, NoteFormState>(
+        buildWhen: (p, c) => p.showErrorMessage != c.showErrorMessage,
+        builder: (context, state) {
+          return Form(
+            autovalidate: state.showErrorMessage,
+            child: SingleChildScrollView(
+                child: Column(
+              children: [
+                const BodyField(),
+              ],
+            )),
+          );
+        },
       ),
     );
   }
