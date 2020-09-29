@@ -52,7 +52,7 @@ abstract class NoteDto implements _$NoteDto {
       _$NoteDtoFromJson(json);
 
   factory NoteDto.fromFirestore(DocumentSnapshot doc) {
-    return NoteDto.fromJson(doc.data).copyWith(id: doc.documentID);
+    return NoteDto.fromJson(doc.data()).copyWith(id: doc.id);
   }
 }
 
@@ -64,7 +64,7 @@ class ServerTimestampConverter implements JsonConverter<FieldValue, Object> {
   }
 
   @override
-  Object toJson(Object fielValue) => fielValue;
+  Object toJson(Object fieldValue) => fieldValue;
 }
 
 @freezed
