@@ -2,12 +2,12 @@ import 'package:auto_route/auto_route.dart';
 import 'package:ddd/application/auth/auth_bloc.dart';
 import 'package:ddd/injections.dart';
 import 'package:ddd/presentation/routes/router.gr.dart';
-import 'package:ddd/presentation/sign_in/sign_in.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AppWidget extends StatelessWidget {
+  const AppWidget();
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
