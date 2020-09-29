@@ -1,21 +1,27 @@
-// import 'package:bloc/bloc.dart';
+import 'package:bloc/bloc.dart';
 
-// class SimpleBlocDelegate  extends Delatege{
-//   @override
-//   void onEvent(Bloc bloc, Object event) {
-//     super.onEvent(bloc, event);
-//     print(event);
-//   }
+class MyBlocObserver extends BlocObserver {
+  @override
+  void onEvent(Bloc bloc, Object event) {
+    print(event);
+    super.onEvent(bloc, event);
+  }
 
-//   @override
-//   void onError(Bloc bloc, Object error, StackTrace stacktrace) {
-//     super.onError(bloc, error, stacktrace);
-//     print(error);
-//   }
+  @override
+  void onChange(Cubit cubit, Change change) {
+    print(change);
+    super.onChange(cubit, change);
+  }
 
-//   @override
-//   void onTransition(Bloc bloc, Transition transition) {
-//     super.onTransition(bloc, transition);
-//     print(transition);
-//   }
-// }
+  @override
+  void onTransition(Bloc bloc, Transition transition) {
+    print(transition);
+    super.onTransition(bloc, transition);
+  }
+
+  @override
+  void onError(Cubit cubit, Object error, StackTrace stackTrace) {
+    print('$error, $stackTrace');
+    super.onError(cubit, error, stackTrace);
+  }
+}
