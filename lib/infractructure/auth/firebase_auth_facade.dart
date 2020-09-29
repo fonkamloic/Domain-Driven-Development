@@ -4,7 +4,7 @@ import 'package:ddd/domain/auth/user.dart';
 import 'package:ddd/domain/core/auth_failure.dart';
 import 'package:ddd/domain/auth/valid_objects.dart';
 import 'package:ddd/infractructure/auth/firebase_user_mapper.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart' hide User;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -46,7 +46,7 @@ class FirebaseAuthFacade implements IAuthFacade {
       await _firebaseAuth.signInWithEmailAndPassword(
           email: emailAddressStr, password: passwordStr);
       return right(unit);
-    } on PlatformException catch (e) {
+    } on FirebaseAuthException catch (e) {
       if (e.code == 'ERROR_EMAIL_ALREADY_IN_USE') {
         return left(const AuthFailure.emailAlreadyInUse());
       } else if (e.code == 'ERROR_WRONG_PASSWORD' ||
@@ -68,23 +68,22 @@ class FirebaseAuthFacade implements IAuthFacade {
 
       final GoogleSignInAuthentication googleAuthentication =
           await googleUser.authentication;
-      final authCredential = GoogleAuthProvider.getCredential(
+      final authCredential = GoogleAuthProvider.credential(
           idToken: googleAuthentication.idToken,
           accessToken: googleAuthentication.accessToken);
-      AuthResult authResult =
+     UserCredential authResult =
           await _firebaseAuth.signInWithCredential(authCredential);
 
       return right(unit);
-    } on PlatformException catch (e) {
+    } on FirebaseAuthException catch (e) {
       print("Error in Firebase_auth_facade value $e");
       return left(const AuthFailure.serverError());
     }
   }
 
   @override
-  Future<Option<User>> getSignedInUser() => _firebaseAuth
-      .currentUser()
-      .then((firebaseUser) => optionOf(firebaseUser?.toDomain()));
+  Future<Option<User>> getSignedInUser() async =>
+      optionOf(_firebaseAuth.currentUser?.toDomain());
 
   @override
   Future<void> signOut() => Future.wait([
