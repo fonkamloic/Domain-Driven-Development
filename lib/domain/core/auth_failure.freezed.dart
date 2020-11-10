@@ -9,6 +9,7 @@ part of 'auth_failure.dart';
 
 T _$identity<T>(T value) => value;
 
+/// @nodoc
 class _$AuthFailureTearOff {
   const _$AuthFailureTearOff();
 
@@ -33,9 +34,11 @@ class _$AuthFailureTearOff {
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $AuthFailure = _$AuthFailureTearOff();
 
+/// @nodoc
 mixin _$AuthFailure {
   @optionalTypeArgs
   Result when<Result extends Object>({
@@ -72,12 +75,14 @@ mixin _$AuthFailure {
   });
 }
 
+/// @nodoc
 abstract class $AuthFailureCopyWith<$Res> {
   factory $AuthFailureCopyWith(
           AuthFailure value, $Res Function(AuthFailure) then) =
       _$AuthFailureCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$AuthFailureCopyWithImpl<$Res> implements $AuthFailureCopyWith<$Res> {
   _$AuthFailureCopyWithImpl(this._value, this._then);
 
@@ -86,12 +91,14 @@ class _$AuthFailureCopyWithImpl<$Res> implements $AuthFailureCopyWith<$Res> {
   final $Res Function(AuthFailure) _then;
 }
 
+/// @nodoc
 abstract class $CancelledByUerCopyWith<$Res> {
   factory $CancelledByUerCopyWith(
           CancelledByUer value, $Res Function(CancelledByUer) then) =
       _$CancelledByUerCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$CancelledByUerCopyWithImpl<$Res> extends _$AuthFailureCopyWithImpl<$Res>
     implements $CancelledByUerCopyWith<$Res> {
   _$CancelledByUerCopyWithImpl(
@@ -102,6 +109,7 @@ class _$CancelledByUerCopyWithImpl<$Res> extends _$AuthFailureCopyWithImpl<$Res>
   CancelledByUer get _value => super._value as CancelledByUer;
 }
 
+/// @nodoc
 class _$CancelledByUer implements CancelledByUer {
   const _$CancelledByUer();
 
@@ -188,12 +196,14 @@ abstract class CancelledByUer implements AuthFailure {
   const factory CancelledByUer() = _$CancelledByUer;
 }
 
+/// @nodoc
 abstract class $ServerErrorCopyWith<$Res> {
   factory $ServerErrorCopyWith(
           ServerError value, $Res Function(ServerError) then) =
       _$ServerErrorCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$ServerErrorCopyWithImpl<$Res> extends _$AuthFailureCopyWithImpl<$Res>
     implements $ServerErrorCopyWith<$Res> {
   _$ServerErrorCopyWithImpl(
@@ -204,6 +214,7 @@ class _$ServerErrorCopyWithImpl<$Res> extends _$AuthFailureCopyWithImpl<$Res>
   ServerError get _value => super._value as ServerError;
 }
 
+/// @nodoc
 class _$ServerError implements ServerError {
   const _$ServerError();
 
@@ -290,12 +301,14 @@ abstract class ServerError implements AuthFailure {
   const factory ServerError() = _$ServerError;
 }
 
+/// @nodoc
 abstract class $EmailAlreadyInUseCopyWith<$Res> {
   factory $EmailAlreadyInUseCopyWith(
           EmailAlreadyInUse value, $Res Function(EmailAlreadyInUse) then) =
       _$EmailAlreadyInUseCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$EmailAlreadyInUseCopyWithImpl<$Res>
     extends _$AuthFailureCopyWithImpl<$Res>
     implements $EmailAlreadyInUseCopyWith<$Res> {
@@ -307,6 +320,7 @@ class _$EmailAlreadyInUseCopyWithImpl<$Res>
   EmailAlreadyInUse get _value => super._value as EmailAlreadyInUse;
 }
 
+/// @nodoc
 class _$EmailAlreadyInUse implements EmailAlreadyInUse {
   const _$EmailAlreadyInUse();
 
@@ -393,6 +407,7 @@ abstract class EmailAlreadyInUse implements AuthFailure {
   const factory EmailAlreadyInUse() = _$EmailAlreadyInUse;
 }
 
+/// @nodoc
 abstract class $InvalidEmailAndPasswordCombinationCopyWith<$Res> {
   factory $InvalidEmailAndPasswordCombinationCopyWith(
           InvalidEmailAndPasswordCombination value,
@@ -400,6 +415,7 @@ abstract class $InvalidEmailAndPasswordCombinationCopyWith<$Res> {
       _$InvalidEmailAndPasswordCombinationCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$InvalidEmailAndPasswordCombinationCopyWithImpl<$Res>
     extends _$AuthFailureCopyWithImpl<$Res>
     implements $InvalidEmailAndPasswordCombinationCopyWith<$Res> {
@@ -413,6 +429,7 @@ class _$InvalidEmailAndPasswordCombinationCopyWithImpl<$Res>
       super._value as InvalidEmailAndPasswordCombination;
 }
 
+/// @nodoc
 class _$InvalidEmailAndPasswordCombination
     implements InvalidEmailAndPasswordCombination {
   const _$InvalidEmailAndPasswordCombination();
