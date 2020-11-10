@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:ddd/application/auth/auth_bloc.dart';
 import 'package:ddd/injections.dart';
-import 'package:ddd/presentation/routes/router.gr.dart';
+import 'package:ddd/presentation/routes/router.gr.dart' as generatedRoute;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -34,8 +34,8 @@ class AppWidget extends StatelessWidget {
             ),
           ),
         ),
-        builder: ExtendedNavigator(
-          router: Router(),
+        builder: ExtendedNavigator.builder(
+          router: generatedRoute.Router(),
         ),
       ),
     );
