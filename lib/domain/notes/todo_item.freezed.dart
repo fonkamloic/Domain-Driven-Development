@@ -9,6 +9,7 @@ part of 'todo_item.dart';
 
 T _$identity<T>(T value) => value;
 
+/// @nodoc
 class _$TodoItemTearOff {
   const _$TodoItemTearOff();
 
@@ -23,9 +24,11 @@ class _$TodoItemTearOff {
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $TodoItem = _$TodoItemTearOff();
 
+/// @nodoc
 mixin _$TodoItem {
   TodoName get name;
   UniqueId get id;
@@ -34,12 +37,14 @@ mixin _$TodoItem {
   $TodoItemCopyWith<TodoItem> get copyWith;
 }
 
+/// @nodoc
 abstract class $TodoItemCopyWith<$Res> {
   factory $TodoItemCopyWith(TodoItem value, $Res Function(TodoItem) then) =
       _$TodoItemCopyWithImpl<$Res>;
   $Res call({TodoName name, UniqueId id, bool done});
 }
 
+/// @nodoc
 class _$TodoItemCopyWithImpl<$Res> implements $TodoItemCopyWith<$Res> {
   _$TodoItemCopyWithImpl(this._value, this._then);
 
@@ -61,6 +66,7 @@ class _$TodoItemCopyWithImpl<$Res> implements $TodoItemCopyWith<$Res> {
   }
 }
 
+/// @nodoc
 abstract class _$TodoNameCopyWith<$Res> implements $TodoItemCopyWith<$Res> {
   factory _$TodoNameCopyWith(_TodoName value, $Res Function(_TodoName) then) =
       __$TodoNameCopyWithImpl<$Res>;
@@ -68,6 +74,7 @@ abstract class _$TodoNameCopyWith<$Res> implements $TodoItemCopyWith<$Res> {
   $Res call({TodoName name, UniqueId id, bool done});
 }
 
+/// @nodoc
 class __$TodoNameCopyWithImpl<$Res> extends _$TodoItemCopyWithImpl<$Res>
     implements _$TodoNameCopyWith<$Res> {
   __$TodoNameCopyWithImpl(_TodoName _value, $Res Function(_TodoName) _then)
@@ -90,6 +97,7 @@ class __$TodoNameCopyWithImpl<$Res> extends _$TodoItemCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$_TodoName extends _TodoName with DiagnosticableTreeMixin {
   const _$_TodoName(
       {@required this.name, @required this.id, @required this.done})
